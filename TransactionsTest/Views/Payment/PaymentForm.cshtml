@@ -1,49 +1,36 @@
-﻿@model AuthorizationPaymentModel
+﻿@model PaymentUserModel
 <link rel="stylesheet" href="~/css/card.css" asp-append-version="true" />
 
-<form method="post" action="https://3dsgate-dev.borica.bg/cgi-bin/cgi_link" name="pay">
-    <input type="text" name="AMOUNT" size="5" value="100" readonly="readonly"/><br />
-    <input type="text" name="CURRENCY" size="3" value="@Model.CURRENCY" readonly="readonly"/><br />
-    <input type="text" name="DESC" size="16" value="@Model.DESC" readonly="readonly"/><br />
-    <input type="text" name="TERMINAL" size="8" value="@Model.TERMINAL" readonly="readonly"/><br />
-    <input type="hidden" name="MERCH_NAME" size="5" value="@Model.MERCH_NAME" readonly="readonly"/><br />
-    <input type="hidden" name="MERCHANT" size="10" value="@Model.MERCHANT" readonly="readonly"/><br />
-    <input type="hidden" name="TRTYPE" size="1" value="@Model.TRTYPE" readonly="readonly"/><br />
-    <input type="hidden" name="ORDER" size="6" value="@Model.ORDER" readonly="readonly"/><br />
-    <input type="hidden" name="M_INFO" size="152" value="@Model.M_INFO" readonly="readonly"/><br />
-    <input type="hidden" name="AD.CUST_BOR_ORDER_ID" size="12" value="@Model.AD_CUST_BOR_ORDER_ID" readonly="readonly"/><br />
-    <input type="hidden" name="COUNTRY" size="2" value="BG" readonly="readonly"/><br />
-    <input type="hidden" name="TIMESTAMP" size="14" value="@Model.TIMESTAMP" readonly="readonly"/><br />
-    <input type="hidden" name="NONCE" size="32" value="@Model.NONCE" readonly="readonly"/><br />
-    <input type="hidden" name="ADDENDUM" size="5" value="@Model.ADDENDUM" readonly="readonly"/><br />
-    <input type="hidden" name="P_SIGN" size="512" value="@Model.P_SIGN" readonly="readonly"/><br />
+<form method="post" asp-controller="Payment" asp-action="SubmitForm">
 
     <div class="container p-0">
+        
         <div class="card px-4">
             <p class="h8 py-3">Payment Details</p>
             <div class="row gx-3">
+               
                 <div class="col-12">
                     <div class="d-flex flex-column">
                         <p class="text mb-1">Person Name</p>
-                        <input class="form-control mb-3" type="text" name="Name" placeholder="Name">
+                        <input class="form-control mb-3" type="text" asp-for="User" placeholder="Name">
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="d-flex flex-column">
                         <p class="text mb-1">Card Number</p>
-                        <input class="form-control mb-3" name="CardNumber" type="text">
+                        <input class="form-control mb-3" asp-for="Card" type="text">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="d-flex flex-column">
                         <p class="text mb-1">Expiry</p>
-                        <input class="form-control mb-3" type="text" name="Expiry" placeholder="MM/YYYY">
+                        <input class="form-control mb-3" type="text" asp-for="Expiry" placeholder="MM/YYYY">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="d-flex flex-column">
                         <p class="text mb-1">CVV/CVC</p>
-                        <input class="form-control mb-3 pt-2 " name="CVC" type="password" placeholder="***">
+                        <input class="form-control mb-3 pt-2 " asp-for="CVC" type="password" placeholder="***">
                     </div>
                 </div>
                

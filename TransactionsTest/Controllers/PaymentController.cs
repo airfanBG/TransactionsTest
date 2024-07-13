@@ -18,11 +18,16 @@ namespace TransactionsTest.Controllers
         {
             this.webHostEnvironment = webHostEnvironment;
         }
-        public IActionResult Index()
+        public IActionResult PaymentForm()
+        {
+
+            return View();
+        }
+        public IActionResult SubmitForm(PaymentUserModel model)
         {
             Dictionary<string, string> cardHolderInfo = new Dictionary<string, string>();
-            cardHolderInfo.Add("email", "user@sample.com");
-            cardHolderInfo.Add("cardholderName", "CARDHOLDER NAME");
+            cardHolderInfo.Add("email", "user@sample.com");//това ще се вземе от сесията на потребителя
+            cardHolderInfo.Add("cardholderName", model.User);
             string json = JsonConvert.SerializeObject(cardHolderInfo, Newtonsoft.Json.Formatting.Indented);
 
             var encodedUserData = System.Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
@@ -37,8 +42,8 @@ namespace TransactionsTest.Controllers
             string signatureHex = BitConverter.ToString(res).Replace("-", "").ToUpper();
             apm.P_SIGN = signatureHex;
             apm.M_INFO = encodedUserData;
-           
-            return View("PaymentForm",apm );
+
+            return View("SubmitForm", apm);
         }
         public IActionResult ServerResponse()
         {
