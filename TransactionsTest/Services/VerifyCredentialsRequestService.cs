@@ -29,7 +29,7 @@ namespace TransactionsTest.Services
                 model.ORDER.Length.ToString() + model.ORDER +
                 model.TIMESTAMP.Length.ToString() + model.TIMESTAMP +
                 model.NONCE.Length.ToString() + model.NONCE +
-                model.RFU.Length.ToString() + model.RFU;
+                model.RFU;
             AsymmetricKeyParameter privateKey;
             using (StreamReader reader = File.OpenText(model.PrivateKeyPath))
             {

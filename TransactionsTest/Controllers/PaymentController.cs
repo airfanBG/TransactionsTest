@@ -36,7 +36,7 @@ namespace TransactionsTest.Controllers
 
             AuthorizationPaymentModel apm =
                 new AuthorizationPaymentModel("100", r);
-
+          //apm.DESC=  string.Format($"Такса за рано-рани : {}");
             VerifyCredentialsRequestService verifyCredentialsRequestService = new VerifyCredentialsRequestService(apm);
             var res = verifyCredentialsRequestService.SignMessage();
             string signatureHex = BitConverter.ToString(res).Replace("-", "").ToUpper();
